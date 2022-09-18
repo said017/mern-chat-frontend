@@ -8,7 +8,7 @@ import logo from "../assets/logo-ciri-nobg.png";
 
 function Navigation() {
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar expand="lg" bg="light" variant="light" fixed="top">
       <Container>
         <LinkContainer to="/">
           <Navbar.Brand>
