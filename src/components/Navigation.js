@@ -1,37 +1,93 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import { Nav, Navbar, Container, Button, NavDropdown } from "react-bootstrap";
 import { useLogoutUserMutation } from "../services/appApi";
 import { useSelector } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
-import logo from "../assets/logo-ciri-nobg.png";
+import logo from "../assets/logo-ciri-white-nobg.png";
 function Navigation() {
   const user = useSelector((state) => state.user);
   const [logoutUser] = useLogoutUserMutation();
+  const [activeLink, setActiveLink] = useState("home");
+  const [scrolled, setScrolled] = useState(false);
+
   async function handleLogout(e) {
     e.preventDefault();
     await logoutUser(user);
     // redirect to home page
     window.location.replace("/");
   }
+
+  useEffect(() => {
+    const onScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", onScroll);
+
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const onUpdateActiveLink = (value) => {
+    setActiveLink(value);
+  };
+
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar expand="md" className={scrolled ? "scrolled" : ""}>
       <Container>
         <LinkContainer to="/">
           <Navbar.Brand>
-            <img src={logo} style={{ width: 50, height: 50 }} />
+            <img
+              src={logo}
+              alt="Logo"
+              style={{ width: 50, height: 50, marginRight: 10 }}
+            />{" "}
+            <span>Ciriverse</span>
           </Navbar.Brand>
         </LinkContainer>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Toggle aria-controls="basic-navbar-nav">
+          <span className="navbar-toggler-icon"> </span>
+        </Navbar.Toggle>
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
             {!user && (
-              <LinkContainer to="/login">
-                <Nav.Link>Login</Nav.Link>
+              <LinkContainer
+                to="/login"
+                className={
+                  activeLink === "login" ? "active navbar-link" : "navbar-link"
+                }
+              >
+                <Nav.Link onClick={() => onUpdateActiveLink("login")}>
+                  Login
+                </Nav.Link>
               </LinkContainer>
             )}
             <LinkContainer to="/chat">
-              <Nav.Link>Chat</Nav.Link>
+              <Nav.Link
+                className={
+                  activeLink === "chat" ? "active navbar-link" : "navbar-link"
+                }
+                onClick={() => onUpdateActiveLink("chat")}
+              >
+                Chat
+              </Nav.Link>
             </LinkContainer>
+            <span className="navbar-text">
+              {/* <div className="social-icon">
+                <a href="#"><img src={navIcon1} alt="" /></a>
+                <a href="#"><img src={navIcon2} alt="" /></a>
+                <a href="#"><img src={navIcon3} alt="" /></a>
+              </div> */}
+              <LinkContainer to="/connect">
+                <button className="vvd">
+                  <span>Let’s Connect</span>
+                </button>
+              </LinkContainer>
+            </span>
             {user && (
               <NavDropdown
                 title={
@@ -51,13 +107,13 @@ function Navigation() {
                 }
                 id="basic-nav-dropdown"
               >
-                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                {/* <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">
                   Another action
                 </NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.3">
                   Something
-                </NavDropdown.Item>
+                </NavDropdown.Item> */}
 
                 <NavDropdown.Item>
                   <Button variant="danger" onClick={handleLogout}>

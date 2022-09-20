@@ -9,6 +9,7 @@ import Chat from "./pages/Chat";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import { AppContext, socket } from "./context/appContext";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   const [rooms, setRooms] = useState([]);
