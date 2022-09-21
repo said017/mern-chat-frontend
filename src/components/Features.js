@@ -29,17 +29,17 @@ export const Features = () => {
   };
 
   return (
-    <section className="skill" id="skills">
+    <section className="features" id="how-it-works">
       <div className="container">
         <div className="row">
           <div className="col-12">
-            <div className="skill-bx wow zoomIn">
+            <div className="features-bx wow zoomIn">
               <h2>How It Works</h2>
               <p>Fasten your seatbelt. These are the 3 easy steps.</p>
               <Carousel
                 responsive={responsive}
                 // infinite={true}
-                className="owl-carousel owl-theme skill-slider"
+                className="owl-carousel owl-theme features-slider"
               >
                 <div className="item">
                   <img src={meter1} alt="Image" />

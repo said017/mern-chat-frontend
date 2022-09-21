@@ -7,42 +7,9 @@ import colorSharp2 from "../assets/img/color-sharp2.png";
 import "animate.css";
 import TrackVisibility from "react-on-screen";
 
-export const Projects = () => {
-  const projects = [
-    {
-      title: "Business Startup",
-      description: "Design & Development",
-      imgUrl: projImg1,
-    },
-    {
-      title: "Business Startup",
-      description: "Design & Development",
-      imgUrl: projImg2,
-    },
-    {
-      title: "Business Startup",
-      description: "Design & Development",
-      imgUrl: projImg3,
-    },
-    // {
-    //   title: "Business Startup",
-    //   description: "Design & Development",
-    //   imgUrl: projImg1,
-    // },
-    // {
-    //   title: "Business Startup",
-    //   description: "Design & Development",
-    //   imgUrl: projImg2,
-    // },
-    // {
-    //   title: "Business Startup",
-    //   description: "Design & Development",
-    //   imgUrl: projImg3,
-    // },
-  ];
-
+export const WhyCiri = () => {
   return (
-    <section className="project" id="project">
+    <section className="why" id="why-ciri">
       <Container>
         <Row>
           <Col size={12}>
@@ -60,7 +27,7 @@ export const Projects = () => {
                     can be integrated to Web3 and Web2 platform (Youtube, Twitch
                     etc.)
                   </p> */}
-                  <Tab.Container id="projects-tabs" defaultActiveKey="first">
+                  <Tab.Container id="whys-tabs" defaultActiveKey="first">
                     <Nav
                       variant="pills"
                       className="nav-pills mb-5 justify-content-center align-items-center"
@@ -71,7 +38,7 @@ export const Projects = () => {
                       </Nav.Item>
                       <Nav.Item>
                         <Nav.Link eventKey="second">
-                          Immersive Comunities Interaction
+                          Immersive Interaction
                         </Nav.Link>
                       </Nav.Item>
                       <Nav.Item>
@@ -114,7 +81,7 @@ export const Projects = () => {
           </Col>
         </Row>
       </Container>
-      <img className="background-image-right" src={colorSharp2}></img>
+      {/* <img className="background-image-right" src={colorSharp2}></img> */}
     </section>
   );
 };

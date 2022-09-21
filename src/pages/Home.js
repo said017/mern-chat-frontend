@@ -8,8 +8,8 @@ import { ArrowRightCircle } from "react-bootstrap-icons";
 import "animate.css";
 import TrackVisibility from "react-on-screen";
 import { Features } from "../components/Features";
-import { Projects } from "../components/Projects";
-import { Contact } from "../components/Contact";
+import { WhyCiri } from "../components/WhyCiri";
+import { Footer } from "../components/Footer";
 
 function Home() {
   const [loopNum, setLoopNum] = useState(0);
@@ -118,8 +118,8 @@ function Home() {
         </Container>
       </section>
       <Features />
-      <Projects />
-      <Contact />
+      <WhyCiri />
+      <Footer />
     </>
   );
 }

@@ -34,13 +34,22 @@ function Navigation() {
 
   const onUpdateActiveLink = (value) => {
     setActiveLink(value);
+
+    if (value.length) {
+      const element = document.getElementById(value.substring(1));
+      if (element) {
+        element.scrollIntoView();
+      } else {
+        window.scrollTo(0, 0);
+      }
+    }
   };
 
   return (
     <Navbar expand="md" className={scrolled ? "scrolled" : ""}>
       <Container>
-        <LinkContainer to="/">
-          <Navbar.Brand>
+        <LinkContainer to="/#">
+          <Navbar.Brand onClick={() => onUpdateActiveLink("#")}>
             <img
               src={logo}
               alt="Logo"
@@ -56,24 +65,28 @@ function Navigation() {
           <Nav className="ms-auto">
             {!user && (
               <LinkContainer
-                to="/login"
+                to="/#how-it-works"
                 className={
-                  activeLink === "login" ? "active navbar-link" : "navbar-link"
+                  activeLink === "#how-it-works"
+                    ? "active navbar-link"
+                    : "navbar-link"
                 }
               >
-                <Nav.Link onClick={() => onUpdateActiveLink("login")}>
-                  Login
+                <Nav.Link onClick={() => onUpdateActiveLink("#how-it-works")}>
+                  How It Works
                 </Nav.Link>
               </LinkContainer>
             )}
-            <LinkContainer to="/chat">
+            <LinkContainer to="/#why-ciri">
               <Nav.Link
                 className={
-                  activeLink === "chat" ? "active navbar-link" : "navbar-link"
+                  activeLink === "#why-ciri"
+                    ? "active navbar-link"
+                    : "navbar-link"
                 }
-                onClick={() => onUpdateActiveLink("chat")}
+                onClick={() => onUpdateActiveLink("#why-ciri")}
               >
-                Chat
+                Why Ciri
               </Nav.Link>
             </LinkContainer>
             <span className="navbar-text">
